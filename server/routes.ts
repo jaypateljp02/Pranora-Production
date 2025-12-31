@@ -27,13 +27,15 @@ export async function registerRoutes(
   });
 
   // Seed data function
+  // TODO: Seeding on serverless startup causes timeouts. 
+  // Should be moved to a dedicated script or triggered manually.
+  /*
   try {
     await seedDatabase();
   } catch (error) {
     console.error("Failed to seed database:", error);
-    // Don't crash the server, just log it. 
-    // This allows the API to return empty lists instead of 500s.
   }
+  */
 
   return httpServer;
 }
