@@ -15,9 +15,8 @@ app.use(express.urlencoded({ extended: false }));
 // If not, we can wrap the export.
 // The registerRoutes function returns httpServer, we don't need it for serverless but we need the side effects on app.
 
-(async () => {
-    await registerRoutes(httpServer, app);
-})();
+// Initialize routes and seeding
+const initPromise = registerRoutes(httpServer, app);
 
 // Error handler
 app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
@@ -26,4 +25,7 @@ app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
     res.status(status).json({ message });
 });
 
-export default app;
+export default async function handler(req: Request, res: Response) {
+    await initPromise;
+    app(req, res);
+}

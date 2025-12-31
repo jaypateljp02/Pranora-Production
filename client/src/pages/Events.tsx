@@ -5,28 +5,37 @@ import { useState } from "react";
 import { Loader2 } from "lucide-react";
 
 export default function Events() {
-  const { data: events, isLoading } = useEvents();
+  const { data: events, isLoading, error, isError } = useEvents();
   const [filter, setFilter] = useState("All");
 
   const categories = ["All", ...new Set(events?.map(e => e.category) || [])];
-  
-  const filteredEvents = filter === "All" 
-    ? events 
+
+  const filteredEvents = filter === "All"
+    ? events
     : events?.filter(e => e.category === filter);
+
+  if (isError) {
+    return (
+      <div className="min-h-screen pt-40 px-4 text-center">
+        <div className="text-red-500 text-xl font-bold mb-4">Error loading events</div>
+        <p className="text-muted-foreground">{error instanceof Error ? error.message : "Unknown error"}</p>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen pt-20">
       {/* Header */}
       <div className="bg-primary py-20 px-4">
         <div className="max-w-7xl mx-auto text-center">
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="font-display text-4xl md:text-6xl font-bold text-white mb-6"
           >
             Our Portfolio
           </motion.h1>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
@@ -46,8 +55,8 @@ export default function Events() {
               onClick={() => setFilter(category)}
               className={`
                 px-6 py-2 rounded-full text-sm font-medium transition-all duration-300
-                ${filter === category 
-                  ? "bg-primary text-white shadow-lg scale-105" 
+                ${filter === category
+                  ? "bg-primary text-white shadow-lg scale-105"
                   : "bg-white text-primary border border-primary/20 hover:bg-primary/5"
                 }
               `}
@@ -63,7 +72,7 @@ export default function Events() {
             <Loader2 className="w-12 h-12 text-primary animate-spin" />
           </div>
         ) : (
-          <motion.div 
+          <motion.div
             layout
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >

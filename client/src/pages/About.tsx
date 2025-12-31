@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Loader2 } from "lucide-react";
 
 export default function About() {
-  const { data: team, isLoading } = useTeam();
+  const { data: team, isLoading, error, isError } = useTeam();
 
   return (
     <div className="min-h-screen pt-20">
@@ -66,6 +66,11 @@ export default function About() {
           {isLoading ? (
             <div className="flex justify-center">
               <Loader2 className="w-12 h-12 text-primary animate-spin" />
+            </div>
+          ) : isError ? (
+            <div className="text-center">
+              <div className="text-red-500 text-xl font-bold mb-4">Error loading team members</div>
+              <p className="text-muted-foreground">{error instanceof Error ? error.message : "Unknown error"}</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
