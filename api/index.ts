@@ -26,6 +26,15 @@ app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
 });
 
 export default async function handler(req: Request, res: Response) {
-    await initPromise;
-    app(req, res);
+    try {
+        await initPromise;
+        app(req, res);
+    } catch (error) {
+        console.error("API Initialization Error:", error);
+        const message = error instanceof Error ? error.message : String(error);
+        res.status(500).json({
+            message: "Internal Server Error during initialization",
+            details: message
+        });
+    }
 }

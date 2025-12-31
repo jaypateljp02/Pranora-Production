@@ -7,8 +7,11 @@ export function useEvents() {
     queryKey: [api.events.list.path],
     queryFn: async () => {
       const res = await fetch(api.events.list.path);
-      if (!res.ok) throw new Error("Failed to fetch events");
-      const data = await res.json();
+      if (!res.ok) {
+        const text = await res.text();
+        throw new Error(`Failed to fetch events: ${res.status} ${res.statusText} - ${text.substring(0, 100)}`);
+      }
+      const data = JSON.parse(await res.text()); // Robust parsing
       return api.events.list.responses[200].parse(data);
     },
   });
