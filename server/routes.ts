@@ -7,7 +7,7 @@ export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
-  
+
   app.get(api.events.list.path, async (_req, res) => {
     const events = await storage.getEvents();
     res.json(events);
@@ -34,7 +34,7 @@ export async function registerRoutes(
 
 async function seedDatabase() {
   const existingEvents = await storage.getEvents();
-  
+
   // Clean up old unsplash data if it exists to force refresh with pexels
   if (existingEvents.some(e => e.imageUrl.includes('unsplash.com'))) {
     // In-memory or DB storage - if DB, we might want to clear it
@@ -49,7 +49,13 @@ async function seedDatabase() {
         date: new Date("2024-03-15"),
         location: "Indra Ballroom, Delhi",
         imageUrl: "https://images.pexels.com/photos/3350141/pexels-photo-3350141.jpeg?auto=compress&cs=tinysrgb&w=1600",
-        category: "Wedding"
+        categoryId: "Wedding",
+        category: "Wedding",
+        gallery: [
+          "https://images.pexels.com/photos/2253870/pexels-photo-2253870.jpeg?auto=compress&cs=tinysrgb&w=800",
+          "https://images.pexels.com/photos/2291462/pexels-photo-2291462.jpeg?auto=compress&cs=tinysrgb&w=800",
+          "https://images.pexels.com/photos/1035665/pexels-photo-1035665.jpeg?auto=compress&cs=tinysrgb&w=800"
+        ]
       },
       {
         title: "TechInnovate Mumbai Summit 2024",
@@ -57,7 +63,12 @@ async function seedDatabase() {
         date: new Date("2024-02-28"),
         location: "The Gateway Hotel, Mumbai",
         imageUrl: "https://images.pexels.com/photos/2833037/pexels-photo-2833037.jpeg?auto=compress&cs=tinysrgb&w=1600",
-        category: "Corporate"
+        category: "Corporate",
+        gallery: [
+          "https://images.pexels.com/photos/1709003/pexels-photo-1709003.jpeg?auto=compress&cs=tinysrgb&w=800",
+          "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg?auto=compress&cs=tinysrgb&w=800",
+          "https://images.pexels.com/photos/1181438/pexels-photo-1181438.jpeg?auto=compress&cs=tinysrgb&w=800"
+        ]
       },
       {
         title: "Bangalore Brand Launch Gala",
@@ -65,7 +76,12 @@ async function seedDatabase() {
         date: new Date("2024-01-20"),
         location: "Vibrant Event Space, Bangalore",
         imageUrl: "https://images.pexels.com/photos/3321793/pexels-photo-3321793.jpeg?auto=compress&cs=tinysrgb&w=1600",
-        category: "Corporate"
+        category: "Corporate",
+        gallery: [
+          "https://images.pexels.com/photos/3025584/pexels-photo-3025584.jpeg?auto=compress&cs=tinysrgb&w=800",
+          "https://images.pexels.com/photos/2952871/pexels-photo-2952871.jpeg?auto=compress&cs=tinysrgb&w=800",
+          "https://images.pexels.com/photos/1684187/pexels-photo-1684187.jpeg?auto=compress&cs=tinysrgb&w=800"
+        ]
       },
       {
         title: "Destination Wedding Goa",
@@ -73,7 +89,12 @@ async function seedDatabase() {
         date: new Date("2023-12-10"),
         location: "Taj Exotica Resort, Goa",
         imageUrl: "https://images.pexels.com/photos/169190/pexels-photo-169190.jpeg?auto=compress&cs=tinysrgb&w=1600",
-        category: "Wedding"
+        category: "Wedding",
+        gallery: [
+          "https://images.pexels.com/photos/1024960/pexels-photo-1024960.jpeg?auto=compress&cs=tinysrgb&w=800",
+          "https://images.pexels.com/photos/169211/pexels-photo-169211.jpeg?auto=compress&cs=tinysrgb&w=800",
+          "https://images.pexels.com/photos/2253835/pexels-photo-2253835.jpeg?auto=compress&cs=tinysrgb&w=800"
+        ]
       }
     ];
 

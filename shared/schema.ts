@@ -10,6 +10,7 @@ export const events = pgTable("events", {
   date: timestamp("date").notNull(),
   location: text("location").notNull(),
   imageUrl: text("image_url").notNull(),
+  gallery: text("gallery").array().notNull().default([]),
   category: varchar("category", { length: 50 }).notNull(), // e.g., Wedding, Corporate, Social
 });
 

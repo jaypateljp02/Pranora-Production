@@ -41,28 +41,28 @@ export default function EventDetails() {
       {/* Content */}
       <article className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
-          
+
           {/* Image Side */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             className="relative"
           >
             <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl">
-              <img 
-                src={event.imageUrl} 
-                alt={event.title} 
+              <img
+                src={event.imageUrl}
+                alt={event.title}
                 className="w-full h-full object-cover"
               />
             </div>
-            
+
             {/* Decorative element */}
             <div className="absolute -bottom-6 -right-6 w-full h-full border-2 border-secondary rounded-2xl -z-10 hidden md:block" />
           </motion.div>
 
           {/* Text Side */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -98,10 +98,35 @@ export default function EventDetails() {
               </p>
             </div>
 
+            {/* Gallery Section */}
+            {event.gallery && event.gallery.length > 0 && (
+              <div className="mt-12 pt-8 border-t border-border">
+                <h3 className="font-display text-2xl font-bold text-primary mb-6">Event Gallery</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  {event.gallery.map((img, idx) => (
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: idx * 0.1 }}
+                      className="rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow aspect-square"
+                    >
+                      <img
+                        src={img}
+                        alt={`Gallery ${idx + 1}`}
+                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                      />
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            )}
+
             <div className="mt-12 pt-8 border-t border-border">
               <h3 className="font-display text-2xl font-bold text-primary mb-4">Interested in a similar event?</h3>
-              <Link 
-                href="/contact" 
+              <Link
+                href="/contact"
                 className="inline-flex items-center px-8 py-3 bg-primary text-white rounded-full font-semibold hover:bg-primary/90 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1"
               >
                 Book a Consultation
