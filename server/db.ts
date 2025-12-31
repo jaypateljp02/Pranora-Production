@@ -8,5 +8,8 @@ if (!process.env.DATABASE_URL) {
   console.warn("DATABASE_URL is not set. Database features will safely fail or use in-memory storage.");
 }
 
-export const pool = process.env.DATABASE_URL ? new Pool({ connectionString: process.env.DATABASE_URL }) : null;
+export const pool = process.env.DATABASE_URL ? new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false } // Required for Vercel/Supabase checks
+}) : null;
 export const db = pool ? drizzle(pool, { schema }) : null;
