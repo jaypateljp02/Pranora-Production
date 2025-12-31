@@ -10,14 +10,14 @@ export default function About() {
       {/* Hero */}
       <section className="bg-primary py-24 text-center px-4">
         <div className="max-w-4xl mx-auto">
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="font-display text-4xl md:text-6xl font-bold text-white mb-6"
           >
             We Are Storytellers
           </motion.h1>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
@@ -45,9 +45,9 @@ export default function About() {
           </div>
           <div className="relative">
             {/* Event details image */}
-            <img 
-              src="https://images.pexels.com/photos/3407478/pexels-photo-3407478.jpeg?auto=compress&cs=tinysrgb&w=1600" 
-              alt="Event details" 
+            <img
+              src="https://images.pexels.com/photos/50675/banquet-wedding-society-deco-50675.jpeg?auto=compress&cs=tinysrgb&w=1600"
+              alt="Event details"
               className="rounded-2xl shadow-2xl"
             />
             <div className="absolute -z-10 top-8 left-8 w-full h-full bg-muted rounded-2xl" />
@@ -79,9 +79,9 @@ export default function About() {
                   className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow group"
                 >
                   <div className="aspect-square overflow-hidden">
-                    <img 
-                      src={member.imageUrl} 
-                      alt={member.name} 
+                    <img
+                      src={member.imageUrl}
+                      alt={member.name}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>

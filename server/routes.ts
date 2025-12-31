@@ -107,19 +107,19 @@ async function seedDatabase() {
         name: "Rajesh Kumar",
         role: "Founder & Lead Event Planner",
         bio: "With 15+ years in event management, Rajesh is the creative force behind Pranora Production's stunning celebrations across India.",
-        imageUrl: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1600"
+        imageUrl: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=800"
       },
       {
         name: "Priya Sharma",
         role: "Creative Director & Designer",
         bio: "Priya transforms visions into reality with her exceptional eye for aesthetics and deep understanding of cultural nuances in event design.",
-        imageUrl: "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=1600"
+        imageUrl: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=800"
       },
       {
         name: "Amit Patel",
         role: "Operations & Logistics Manager",
         bio: "Amit ensures every event runs flawlessly with meticulous planning, vendor coordination, and attention to every detail.",
-        imageUrl: "https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg?auto=compress&cs=tinysrgb&w=1600"
+        imageUrl: "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=800"
       }
     ];
 
