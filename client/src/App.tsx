@@ -27,10 +27,13 @@ function Router() {
   );
 }
 
+import ScrollToTop from "@/components/ScrollToTop";
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
+        <ScrollToTop />
         <div className="flex flex-col min-h-screen bg-background font-sans antialiased">
           <Navbar />
           <main className="flex-grow">

@@ -6,10 +6,13 @@ export function Footer() {
     <footer className="bg-primary text-primary-foreground pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-          
+
           {/* Brand */}
           <div className="space-y-4">
-            <h3 className="text-3xl font-bold font-display tracking-tight">Pranora<span className="text-secondary"> Production</span></h3>
+            <Link href="/" className="inline-block flex items-center gap-2">
+              <img src="/logo.png" alt="Pranora Production" className="h-16 w-auto object-contain rounded-full" />
+              <span className="text-2xl font-bold font-display tracking-tight text-white">Pranora<span className="text-secondary"> Production</span></span>
+            </Link>
             <p className="text-primary-foreground/70 text-sm leading-relaxed max-w-xs">
               India's premier event management company, crafting unforgettable moments and exquisite experiences for the world's most discerning clients.
             </p>

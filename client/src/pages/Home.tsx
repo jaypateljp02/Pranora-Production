@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { ArrowRight, Star, Calendar, Users, Award } from "lucide-react";
+import { ArrowRight, Star, Calendar, Users, Award, Quote } from "lucide-react";
 import { useEvents } from "@/hooks/use-events";
 import { EventCard } from "@/components/EventCard";
+import { CountUp } from "@/components/CountUp";
 
 const FEATURES = [
   {
@@ -22,6 +23,27 @@ const FEATURES = [
   }
 ];
 
+const TESTIMONIALS = [
+  {
+    name: "Aarav & Diya",
+    role: "Wedding Couple",
+    content: "Pranora Production turned our dream wedding into a reality. The attention to detail and the magical atmosphere they created left us and our guests speechless.",
+    image: "https://images.unsplash.com/photo-1623184663110-89ca23d70eb6?auto=format&fit=crop&q=80&w=200&h=200"
+  },
+  {
+    name: "Rajesh Mehta",
+    role: "CEO, TechFlow",
+    content: "Our annual gala was executed flawlessly. The professionalism and creativity of the team are unmatched in the industry.",
+    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=200&h=200"
+  },
+  {
+    name: "Priya Sharma",
+    role: "Birthday Celebration",
+    content: "The best event planning team I've ever worked with. They took care of everything, allowing me to fully enjoy my special day.",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200&h=200"
+  }
+];
+
 export default function Home() {
   const { data: events, isLoading } = useEvents();
 
@@ -35,9 +57,9 @@ export default function Home() {
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
           {/* Hero background */}
-          <img 
-            src="https://images.pexels.com/photos/1395967/pexels-photo-1395967.jpeg?auto=compress&cs=tinysrgb&w=1600" 
-            alt="Elegant event setup" 
+          <img
+            src="https://images.pexels.com/photos/1395967/pexels-photo-1395967.jpeg?auto=compress&cs=tinysrgb&w=1600"
+            alt="Elegant event setup"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-black/40 mix-blend-multiply" />
@@ -45,7 +67,7 @@ export default function Home() {
         </div>
 
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          <motion.span 
+          <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -53,8 +75,8 @@ export default function Home() {
           >
             Est. 2015
           </motion.span>
-          
-          <motion.h1 
+
+          <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -64,7 +86,7 @@ export default function Home() {
             <span className="italic font-light text-secondary">That Last Forever</span>
           </motion.h1>
 
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -79,14 +101,14 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <Link 
-              href="/events" 
+            <Link
+              href="/events"
               className="px-8 py-4 bg-secondary text-primary font-bold rounded-full hover:bg-white transition-colors duration-300 shadow-lg shadow-secondary/20 flex items-center justify-center gap-2"
             >
               View Portfolio <ArrowRight className="w-5 h-5" />
             </Link>
-            <Link 
-              href="/contact" 
+            <Link
+              href="/contact"
               className="px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-full hover:bg-white/10 transition-colors duration-300 flex items-center justify-center"
             >
               Contact Us
@@ -105,7 +127,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {FEATURES.map((feature, index) => (
-              <motion.div 
+              <motion.div
                 key={feature.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -137,8 +159,8 @@ export default function Home() {
               <span className="text-secondary font-bold tracking-widest uppercase text-sm">Our Work</span>
               <h2 className="font-display text-4xl md:text-5xl font-bold text-primary mt-2">Featured Events</h2>
             </div>
-            <Link 
-              href="/events" 
+            <Link
+              href="/events"
               className="hidden md:flex items-center text-primary font-semibold hover:text-secondary transition-colors mt-4 md:mt-0"
             >
               View Full Gallery <ArrowRight className="ml-2 w-5 h-5" />
@@ -160,13 +182,83 @@ export default function Home() {
           )}
 
           <div className="mt-12 text-center md:hidden">
-            <Link 
-              href="/events" 
+            <Link
+              href="/events"
               className="inline-flex items-center px-6 py-3 bg-primary text-white rounded-full font-medium"
             >
               View All Events
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-24 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-primary mb-4">Client Love</h2>
+            <div className="h-1 w-20 bg-secondary mx-auto rounded-full" />
+            <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
+              Hear from those who have experienced the magic of a Pranora event.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {TESTIMONIALS.map((testimonial, index) => (
+              <motion.div
+                key={testimonial.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-white p-8 rounded-2xl shadow-lg border border-border/50 flex flex-col items-center text-center"
+              >
+                <div className="w-16 h-16 relative mb-6">
+                  <div className="absolute inset-0 bg-secondary rounded-full transform rotate-6 opacity-20" />
+                  <img
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    className="w-full h-full object-cover rounded-full relative z-10"
+                  />
+                  <div className="absolute -bottom-2 -right-2 bg-secondary text-primary rounded-full p-1.5 z-20">
+                    <Quote className="w-3 h-3 fill-current" />
+                  </div>
+                </div>
+                <p className="text-muted-foreground mb-6 italic">"{testimonial.content}"</p>
+                <div>
+                  <h4 className="font-bold text-primary text-lg">{testimonial.name}</h4>
+                  <p className="text-sm text-secondary font-medium uppercase tracking-wider">{testimonial.role}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-24 bg-zinc-900 text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <img
+            src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&q=80"
+            alt="Background"
+            className="w-full h-full object-cover grayscale"
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-zinc-900 via-zinc-900/90 to-transparent" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col md:flex-row items-center justify-between">
+          <div className="mb-8 md:mb-0 max-w-2xl">
+            <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">Ready to Create Magic?</h2>
+            <p className="text-xl text-zinc-300 font-light">
+              Let's transform your vision into an unforgettable reality. Schedule your consultation today.
+            </p>
+          </div>
+          <Link
+            href="/contact"
+            className="px-8 py-4 bg-secondary text-primary font-bold rounded-full hover:bg-white transition-colors duration-300 shadow-lg shadow-secondary/20 flex items-center justify-center gap-2 whitespace-nowrap"
+          >
+            Start Planning
+          </Link>
         </div>
       </section>
 
@@ -180,14 +272,19 @@ export default function Home() {
               { label: "Corporate Clients", value: "100+" },
               { label: "Industry Awards", value: "15" }
             ].map((stat, idx) => (
-              <motion.div 
+              <motion.div
                 key={stat.label}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
               >
-                <div className="font-display text-4xl md:text-6xl font-bold text-secondary mb-2">{stat.value}</div>
+                <div className="font-display text-4xl md:text-6xl font-bold text-secondary mb-2">
+                  <CountUp
+                    value={parseInt(stat.value.replace(/\D/g, ''))}
+                    suffix={stat.value.replace(/[0-9]/g, '')}
+                  />
+                </div>
                 <div className="text-sm md:text-base font-medium opacity-80 uppercase tracking-widest">{stat.label}</div>
               </motion.div>
             ))}

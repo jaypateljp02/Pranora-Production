@@ -29,19 +29,19 @@ export async function registerRoutes(
   // Seed data function
   // TODO: Seeding on serverless startup causes timeouts. 
   // Should be moved to a dedicated script or triggered manually.
-  /*
   try {
     await seedDatabase();
   } catch (error) {
     console.error("Failed to seed database:", error);
   }
-  */
 
   return httpServer;
 }
 
 async function seedDatabase() {
+  console.log("Starting database seed check...");
   const existingEvents = await storage.getEvents();
+  console.log(`Found ${existingEvents.length} existing events.`);
 
   // Clean up old unsplash data if it exists to force refresh with pexels
   if (existingEvents.some(e => e.imageUrl.includes('unsplash.com'))) {
@@ -49,7 +49,7 @@ async function seedDatabase() {
     // For this implementation, we'll just check if we need to add/update
   }
 
-  if (existingEvents.length === 0) {
+  if (!existingEvents.some(e => e.title === "Grandeur Delhi Wedding Celebration")) {
     const events = [
       {
         title: "Grandeur Delhi Wedding Celebration",
@@ -112,9 +112,9 @@ async function seedDatabase() {
 
     const team = [
       {
-        name: "Rajesh Kumar",
+        name: "Omkar Suresh Nage",
         role: "Founder & Lead Event Planner",
-        bio: "With 15+ years in event management, Rajesh is the creative force behind Pranora Production's stunning celebrations across India.",
+        bio: "With 15+ years in event management, Omkar is the creative force behind Pranora Production's stunning celebrations across India.",
         imageUrl: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=800"
       },
       {
@@ -134,5 +134,8 @@ async function seedDatabase() {
     for (const member of team) {
       await storage.createTeamMember(member);
     }
+    console.log("Database seeded with Indian events and team!");
+  } else {
+    console.log("Database already has Indian data, skipping seed.");
   }
 }

@@ -19,8 +19,17 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
-          <Link href="/" className="font-display text-2xl font-bold text-primary tracking-tight">
-            Pranora<span className="text-secondary"> Production</span>
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-3" onClick={(e) => {
+            if (location === '/') {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+          }}>
+            <img src="/logo.png" alt="Pranora Production" className="h-10 md:h-12 w-auto object-contain" />
+            <span className="font-display text-2xl font-bold text-primary tracking-tight">
+              Pranora<span className="text-secondary"> Production</span>
+            </span>
           </Link>
 
           {/* Desktop Nav */}
